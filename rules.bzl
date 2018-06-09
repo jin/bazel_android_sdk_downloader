@@ -27,7 +27,7 @@ def _android_sdk_repository_impl(repo_ctx):
     repo_ctx.file(_INSTALL_TARGET_NAME + "/internal.bzl", content = """
 def _install_sdk_impl(ctx):
     ctx.actions.write(ctx.outputs._output, '''
-        {{sdkmanager}} --sdk_root='{path}' 'platforms;android-{api_level}' 'build-tools;{build_tools_version}'
+        {{sdkmanager}} --sdk_root='{path}' 'platforms;android-{api_level}' 'build-tools;{build_tools_version}' 'extras;android;m2repository'
 
     '''.format(sdkmanager = ctx.file._sdk_manager.path), is_executable = True)
     runfiles = ctx.runfiles(files = [ctx.file._sdk_manager])
